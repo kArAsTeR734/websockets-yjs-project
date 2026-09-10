@@ -7,11 +7,13 @@ import { CollaborationContext } from './collaboration-context.ts';
 export const CollaborationProvider = ({ children }: { children: ReactNode }) => {
   const [doc] = useState(() => new Y.Doc());
   const [persistence, setPersistence] = useState<IndexeddbPersistence | null>(null);
+
   const { provider, status } = useWebSocketProvider(doc);
 
   useEffect(() => {
     const nextPersistence = new IndexeddbPersistence('my-room', doc);
     // IndexedDB is an external resource that only exists after this effect.
+
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setPersistence(nextPersistence);
 
@@ -21,10 +23,10 @@ export const CollaborationProvider = ({ children }: { children: ReactNode }) => 
   }, [doc]);
 
   useEffect(
-    () => () => {
-      doc.destroy();
-    },
-    [doc],
+      () => () => {
+        doc.destroy();
+      },
+      [doc],
   );
 
   const awareness = provider?.awareness;
@@ -34,8 +36,8 @@ export const CollaborationProvider = ({ children }: { children: ReactNode }) => 
   }
 
   return (
-    <CollaborationContext.Provider value={{ doc, persistence, provider, awareness, status }}>
-      {children}
-    </CollaborationContext.Provider>
+      <CollaborationContext.Provider value={{ doc, persistence, provider, awareness, status }}>
+        {children}
+      </CollaborationContext.Provider>
   );
 };
