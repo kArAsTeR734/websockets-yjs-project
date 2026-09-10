@@ -1,0 +1,15 @@
+.footer {
+  display: flex;
+  align-items: center;
+  min-height: 3.5rem;
+  padding: 0.85rem 1.1rem;
+  border: 1px solid rgba(133, 151, 186, 0.2);
+  border-radius: 1rem;
+  background: rgba(241, 245, 252, 0.76);
+  color: #69758d;
+  font-size: 0.9rem;
+}
+
+.footer p {
+  line-height: 1.5;
+}
